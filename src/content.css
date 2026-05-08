@@ -1,0 +1,272 @@
+#cdt-root {
+  all: initial;
+  color-scheme: light;
+  position: fixed;
+  z-index: 2147483647;
+  right: 18px;
+  bottom: 18px;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+#cdt-root * {
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.cdt-shell {
+  width: 330px;
+  color: #17201c;
+  background: rgba(250, 252, 249, 0.96);
+  border: 1px solid rgba(37, 54, 46, 0.14);
+  border-radius: 8px;
+  box-shadow: 0 22px 60px rgba(12, 19, 16, 0.20);
+  overflow: hidden;
+  backdrop-filter: blur(14px);
+}
+
+.cdt-collapsed {
+  width: 172px;
+}
+
+.cdt-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 12px 10px;
+  border-bottom: 1px solid rgba(37, 54, 46, 0.10);
+}
+
+.cdt-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.cdt-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #3aa17e;
+  box-shadow: 0 0 0 4px rgba(58, 161, 126, 0.14);
+}
+
+.cdt-title {
+  font-size: 13px;
+  font-weight: 750;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+.cdt-controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cdt-icon-button {
+  appearance: none;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #42524a;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.cdt-icon-button:hover {
+  background: rgba(37, 54, 46, 0.08);
+}
+
+.cdt-body {
+  padding: 12px;
+}
+
+.cdt-meter-row {
+  display: grid;
+  grid-template-columns: 82px 1fr;
+  gap: 12px;
+  align-items: center;
+}
+
+.cdt-ring {
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: conic-gradient(var(--cdt-color) calc(var(--cdt-score) * 1%), #e7ece8 0);
+  position: relative;
+}
+
+.cdt-ring::after {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border-radius: 50%;
+  background: #fbfcfa;
+}
+
+.cdt-score {
+  position: relative;
+  z-index: 1;
+  font-size: 25px;
+  font-weight: 800;
+  color: #17201c;
+}
+
+.cdt-kicker {
+  margin: 0 0 4px;
+  color: #66756d;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.cdt-state {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.cdt-impact {
+  margin: 5px 0 0;
+  color: #42524a;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.cdt-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.cdt-metric {
+  border: 1px solid rgba(37, 54, 46, 0.10);
+  border-radius: 7px;
+  padding: 7px;
+  background: #ffffff;
+}
+
+.cdt-label {
+  color: #66756d;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.cdt-value {
+  margin-top: 3px;
+  font-size: 14px;
+  font-weight: 800;
+  color: #17201c;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cdt-section {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(37, 54, 46, 0.10);
+}
+
+.cdt-section-title {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 800;
+  color: #25362e;
+}
+
+.cdt-card {
+  margin: 0;
+  padding: 9px;
+  border-radius: 7px;
+  background: #f1f5f0;
+  color: #25362e;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.cdt-list {
+  margin: 0;
+  padding-left: 17px;
+  color: #25362e;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.cdt-list li + li {
+  margin-top: 4px;
+}
+
+.cdt-textarea {
+  width: 100%;
+  min-height: 72px;
+  resize: vertical;
+  border: 1px solid rgba(37, 54, 46, 0.18);
+  border-radius: 7px;
+  padding: 8px;
+  background: #ffffff;
+  color: #17201c;
+  font-size: 12px;
+  line-height: 1.35;
+  outline: none;
+}
+
+.cdt-textarea:focus {
+  border-color: #3aa17e;
+  box-shadow: 0 0 0 3px rgba(58, 161, 126, 0.16);
+}
+
+.cdt-button {
+  appearance: none;
+  width: 100%;
+  min-height: 34px;
+  margin-top: 8px;
+  border: 0;
+  border-radius: 7px;
+  background: #17201c;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.cdt-button:hover {
+  background: #25362e;
+}
+
+.cdt-toast {
+  position: fixed;
+  right: 18px;
+  bottom: 370px;
+  z-index: 2147483647;
+  max-width: 330px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #17201c;
+  color: #ffffff;
+  box-shadow: 0 16px 40px rgba(12, 19, 16, 0.26);
+  font: 12px/1.4 Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+@media (max-width: 680px) {
+  #cdt-root {
+    right: 10px;
+    left: 10px;
+    bottom: 10px;
+  }
+
+  .cdt-shell {
+    width: auto;
+  }
+}

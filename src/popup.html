@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cognitive Debt Tracker</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="popup">
+      <header class="header">
+        <div>
+          <p class="eyebrow">Cognitive Debt</p>
+          <h1>Thinking fitness</h1>
+        </div>
+        <div class="score" id="session-score">0</div>
+      </header>
+      <section class="trend" id="trend"></section>
+      <section class="stats">
+        <div>
+          <span>Turns</span>
+          <strong id="turn-count">0</strong>
+        </div>
+        <div>
+          <span>Daily debt</span>
+          <strong id="daily-debt">0</strong>
+        </div>
+        <div>
+          <span>Top Bloom</span>
+          <strong id="top-bloom">-</strong>
+        </div>
+      </section>
+      <section class="latest" id="latest">
+        <p>Use ChatGPT or Claude, then send a prompt to start tracking.</p>
+      </section>
+      <button id="reset">Reset session</button>
+    </main>
+    <script src="scoring.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "Cognitive Debt Tracker",
+  "description": "A cognitive wellness layer for using AI without losing the habit of thinking.",
+  "version": "0.1.0",
+  "permissions": ["storage"],
+  "host_permissions": [
+    "https://chatgpt.com/*",
+    "https://chat.openai.com/*",
+    "https://claude.ai/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chatgpt.com/*",
+        "https://chat.openai.com/*",
+        "https://claude.ai/*"
+      ],
+      "js": ["src/scoring.js", "src/content.js"],
+      "css": ["src/content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "Cognitive Debt Tracker",
+    "default_popup": "src/popup.html"
+  }
+}
