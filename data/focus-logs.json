@@ -1,0 +1,973 @@
+[
+  {
+    "at": "2026-05-08T18:27:41.992Z",
+    "focus": 52,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 37,
+      "posture": 28,
+      "presence": 100
+    },
+    "samples": 4016,
+    "type": "camera-snapshot",
+    "raw": {
+      "gazeX": 0.2766250800473371,
+      "headDrop": -0.2706246078014374,
+      "headPitch": 0.4702430509725664,
+      "headYaw": 0.002956956624984741,
+      "lean": 0.03250366449356079,
+      "shoulderSlope": 0.12124758958816528
+    }
+  },
+  {
+    "at": "2026-05-08T18:27:42.094Z",
+    "focus": 56,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 67,
+      "posture": 39,
+      "presence": 100
+    },
+    "samples": 4017,
+    "type": "event",
+    "event": {
+      "elapsed": "05:45",
+      "id": "recovered",
+      "severity": "good",
+      "title": "กลับมาเข้าที่แล้ว"
+    }
+  },
+  {
+    "at": "2026-05-08T18:27:42.977Z",
+    "focus": 68,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 76,
+      "posture": 37,
+      "presence": 100
+    },
+    "samples": 4026,
+    "type": "event",
+    "event": {
+      "elapsed": "05:46",
+      "id": "recovered",
+      "severity": "good",
+      "title": "กลับมาเข้าที่แล้ว"
+    }
+  },
+  {
+    "at": "2026-05-08T18:27:44.287Z",
+    "focus": 62,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 34,
+      "posture": 32,
+      "presence": 100
+    },
+    "samples": 4039,
+    "type": "event",
+    "event": {
+      "elapsed": "05:47",
+      "id": "look-away",
+      "severity": "warn",
+      "title": "ตาออกจากงาน"
+    }
+  },
+  {
+    "at": "2026-05-08T18:27:44.483Z",
+    "focus": 57,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 39,
+      "posture": 24,
+      "presence": 100
+    },
+    "samples": 4041,
+    "type": "event",
+    "event": {
+      "elapsed": "05:47",
+      "id": "posture",
+      "severity": "warn",
+      "title": "ท่านั่งเปลี่ยน"
+    }
+  },
+  {
+    "at": "2026-05-08T18:27:44.870Z",
+    "focus": 56,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 41,
+      "posture": 30,
+      "presence": 100
+    },
+    "samples": 4045,
+    "type": "event",
+    "event": {
+      "elapsed": "05:48",
+      "id": "recovered",
+      "severity": "good",
+      "title": "กลับมาเข้าที่แล้ว"
+    }
+  },
+  {
+    "at": "2026-05-08T18:27:45.337Z",
+    "focus": 58,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 65,
+      "posture": 38,
+      "presence": 100
+    },
+    "samples": 4050,
+    "type": "event",
+    "event": {
+      "elapsed": "05:48",
+      "id": "recovered",
+      "severity": "good",
+      "title": "กลับมาเข้าที่แล้ว"
+    }
+  },
+  {
+    "at": "2026-05-08T18:27:46.025Z",
+    "focus": 61,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 50,
+      "posture": 35,
+      "presence": 100
+    },
+    "samples": 4057,
+    "type": "event",
+    "event": {
+      "elapsed": "05:49",
+      "id": "recovered",
+      "severity": "good",
+      "title": "กลับมาเข้าที่แล้ว"
+    }
+  },
+  {
+    "at": "2026-05-08T18:27:46.218Z",
+    "focus": 58,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 46,
+      "posture": 25,
+      "presence": 100
+    },
+    "samples": 4059,
+    "type": "event",
+    "event": {
+      "elapsed": "05:49",
+      "id": "posture",
+      "severity": "warn",
+      "title": "ท่านั่งเปลี่ยน"
+    }
+  },
+  {
+    "at": "2026-05-08T18:27:46.590Z",
+    "focus": 57,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 44,
+      "posture": 34,
+      "presence": 100
+    },
+    "samples": 4063,
+    "type": "event",
+    "event": {
+      "elapsed": "05:50",
+      "id": "recovered",
+      "severity": "good",
+      "title": "กลับมาเข้าที่แล้ว"
+    }
+  },
+  {
+    "at": "2026-05-08T18:27:47.031Z",
+    "focus": 57,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 45,
+      "posture": 28,
+      "presence": 100
+    },
+    "samples": 4068,
+    "type": "camera-snapshot",
+    "raw": {
+      "gazeX": 0.3063869741852543,
+      "headDrop": -0.23451218008995056,
+      "headPitch": 0.47429262797505073,
+      "headYaw": 0.005314305424690247,
+      "lean": 0.04398561269044876,
+      "shoulderSlope": 0.12143462896347046
+    }
+  },
+  {
+    "at": "2026-05-08T18:27:47.112Z",
+    "focus": 57,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 44,
+      "posture": 34,
+      "presence": 100
+    },
+    "samples": 4069,
+    "type": "event",
+    "event": {
+      "elapsed": "05:50",
+      "id": "recovered",
+      "severity": "good",
+      "title": "กลับมาเข้าที่แล้ว"
+    }
+  },
+  {
+    "at": "2026-05-08T18:27:51.506Z",
+    "focus": 62,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 43,
+      "posture": 27,
+      "presence": 100
+    },
+    "samples": 4121,
+    "type": "event",
+    "event": {
+      "elapsed": "05:54",
+      "id": "posture",
+      "severity": "warn",
+      "title": "ท่านั่งเปลี่ยน"
+    }
+  },
+  {
+    "at": "2026-05-08T18:27:51.619Z",
+    "focus": 59,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 38,
+      "posture": 25,
+      "presence": 100
+    },
+    "samples": 4122,
+    "type": "event",
+    "event": {
+      "elapsed": "05:55",
+      "id": "look-away",
+      "severity": "warn",
+      "title": "ตาออกจากงาน"
+    }
+  },
+  {
+    "at": "2026-05-08T18:27:52.034Z",
+    "focus": 60,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 68,
+      "posture": 22,
+      "presence": 100
+    },
+    "samples": 4127,
+    "type": "camera-snapshot",
+    "raw": {
+      "gazeX": 0.38687610450753646,
+      "headDrop": -0.24147343635559082,
+      "headPitch": 0.6392644222777714,
+      "headYaw": -0.014269262552261353,
+      "lean": 0.06511958688497543,
+      "shoulderSlope": 0.13130176067352295
+    }
+  },
+  {
+    "at": "2026-05-08T18:27:52.699Z",
+    "focus": 44,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 4,
+      "posture": 36,
+      "presence": 100
+    },
+    "samples": 4134,
+    "type": "event",
+    "event": {
+      "elapsed": "05:56",
+      "id": "low-focus",
+      "severity": "bad",
+      "title": "คะแนนบัดดี้ลดลง"
+    }
+  },
+  {
+    "at": "2026-05-08T18:27:52.874Z",
+    "focus": 55,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 71,
+      "posture": 50,
+      "presence": 100
+    },
+    "samples": 4136,
+    "type": "event",
+    "event": {
+      "elapsed": "05:56",
+      "id": "recovered",
+      "severity": "good",
+      "title": "กลับมาเข้าที่แล้ว"
+    }
+  },
+  {
+    "at": "2026-05-08T18:27:53.925Z",
+    "focus": 64,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 17,
+      "posture": 48,
+      "presence": 100
+    },
+    "samples": 4147,
+    "type": "event",
+    "event": {
+      "elapsed": "05:57",
+      "id": "look-away",
+      "severity": "warn",
+      "title": "ตาออกจากงาน"
+    }
+  },
+  {
+    "at": "2026-05-08T18:27:54.019Z",
+    "focus": 55,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 0,
+      "posture": 46,
+      "presence": 0
+    },
+    "samples": 4148,
+    "type": "event",
+    "event": {
+      "elapsed": "05:57",
+      "id": "recovered",
+      "severity": "good",
+      "title": "กลับมาเข้าที่แล้ว"
+    }
+  },
+  {
+    "at": "2026-05-08T18:27:54.500Z",
+    "focus": 66,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 51,
+      "posture": 40,
+      "presence": 100
+    },
+    "samples": 4153,
+    "type": "event",
+    "event": {
+      "elapsed": "05:57",
+      "id": "eyes-closed",
+      "severity": "warn",
+      "title": "พักสายตานานไปนิด"
+    }
+  },
+  {
+    "at": "2026-05-08T18:27:54.692Z",
+    "focus": 66,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 76,
+      "posture": 37,
+      "presence": 100
+    },
+    "samples": 4155,
+    "type": "event",
+    "event": {
+      "elapsed": "05:58",
+      "id": "recovered",
+      "severity": "good",
+      "title": "กลับมาเข้าที่แล้ว"
+    }
+  },
+  {
+    "at": "2026-05-08T18:27:57.101Z",
+    "focus": 77,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 79,
+      "posture": 52,
+      "presence": 100
+    },
+    "samples": 4182,
+    "type": "camera-snapshot",
+    "raw": {
+      "gazeX": 0.5499607044696606,
+      "headDrop": -0.2372855544090271,
+      "headPitch": 0.41345564948119945,
+      "headYaw": -0.007103823125362396,
+      "lean": 0.010526075959205627,
+      "shoulderSlope": 0.08139288425445557
+    }
+  },
+  {
+    "at": "2026-05-08T18:27:57.438Z",
+    "focus": 79,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 58,
+      "posture": 73,
+      "presence": 100
+    },
+    "samples": 4186,
+    "type": "event",
+    "event": {
+      "elapsed": "06:00",
+      "id": "eyes-closed",
+      "severity": "warn",
+      "title": "พักสายตานานไปนิด"
+    }
+  },
+  {
+    "at": "2026-05-08T18:27:57.603Z",
+    "focus": 78,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 81,
+      "posture": 61,
+      "presence": 100
+    },
+    "samples": 4188,
+    "type": "event",
+    "event": {
+      "elapsed": "06:01",
+      "id": "recovered",
+      "severity": "good",
+      "title": "กลับมาเข้าที่แล้ว"
+    }
+  },
+  {
+    "at": "2026-05-08T18:27:58.576Z",
+    "focus": 74,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 79,
+      "posture": 51,
+      "presence": 100
+    },
+    "samples": 4199,
+    "type": "event",
+    "event": {
+      "elapsed": "06:02",
+      "id": "recovered",
+      "severity": "good",
+      "title": "กลับมาเข้าที่แล้ว"
+    }
+  },
+  {
+    "at": "2026-05-08T18:27:59.069Z",
+    "focus": 75,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 55,
+      "posture": 54,
+      "presence": 100
+    },
+    "samples": 4205,
+    "type": "event",
+    "event": {
+      "elapsed": "06:02",
+      "id": "eyes-closed",
+      "severity": "warn",
+      "title": "พักสายตานานไปนิด"
+    }
+  },
+  {
+    "at": "2026-05-08T18:27:59.347Z",
+    "focus": 73,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 76,
+      "posture": 56,
+      "presence": 100
+    },
+    "samples": 4208,
+    "type": "event",
+    "event": {
+      "elapsed": "06:02",
+      "id": "recovered",
+      "severity": "good",
+      "title": "กลับมาเข้าที่แล้ว"
+    }
+  },
+  {
+    "at": "2026-05-08T18:28:01.237Z",
+    "focus": 76,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 55,
+      "posture": 65,
+      "presence": 100
+    },
+    "samples": 4230,
+    "type": "event",
+    "event": {
+      "elapsed": "06:04",
+      "id": "eyes-closed",
+      "severity": "warn",
+      "title": "พักสายตานานไปนิด"
+    }
+  },
+  {
+    "at": "2026-05-08T18:28:01.320Z",
+    "focus": 77,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 80,
+      "posture": 63,
+      "presence": 100
+    },
+    "samples": 4231,
+    "type": "event",
+    "event": {
+      "elapsed": "06:04",
+      "id": "recovered",
+      "severity": "good",
+      "title": "กลับมาเข้าที่แล้ว"
+    }
+  },
+  {
+    "at": "2026-05-08T18:28:01.488Z",
+    "focus": 74,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 81,
+      "posture": 25,
+      "presence": 100
+    },
+    "samples": 4233,
+    "type": "event",
+    "event": {
+      "elapsed": "06:04",
+      "id": "posture",
+      "severity": "warn",
+      "title": "ท่านั่งเปลี่ยน"
+    }
+  },
+  {
+    "at": "2026-05-08T18:28:01.573Z",
+    "focus": 75,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 81,
+      "posture": 42,
+      "presence": 100
+    },
+    "samples": 4234,
+    "type": "event",
+    "event": {
+      "elapsed": "06:05",
+      "id": "recovered",
+      "severity": "good",
+      "title": "กลับมาเข้าที่แล้ว"
+    }
+  },
+  {
+    "at": "2026-05-08T18:28:01.651Z",
+    "focus": 76,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 81,
+      "posture": 58,
+      "presence": 100
+    },
+    "samples": 4235,
+    "type": "event",
+    "event": {
+      "elapsed": "06:05",
+      "id": "pose-partial",
+      "severity": "warn",
+      "title": "บัดดี้ยังเห็นท่านั่งไม่ชัด"
+    }
+  },
+  {
+    "at": "2026-05-08T18:28:01.772Z",
+    "focus": 75,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 80,
+      "posture": 42,
+      "presence": 100
+    },
+    "samples": 4236,
+    "type": "event",
+    "event": {
+      "elapsed": "06:05",
+      "id": "recovered",
+      "severity": "good",
+      "title": "กลับมาเข้าที่แล้ว"
+    }
+  },
+  {
+    "at": "2026-05-08T18:28:02.176Z",
+    "focus": 76,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 82,
+      "posture": 51,
+      "presence": 100
+    },
+    "samples": 4241,
+    "type": "camera-snapshot",
+    "raw": {
+      "gazeX": 0.5360315471881496,
+      "headDrop": -0.24249482154846191,
+      "headPitch": 0.3518657783441148,
+      "headYaw": -0.00472857803106308,
+      "lean": 0.00993134081363678,
+      "shoulderSlope": 0.08356583118438721
+    }
+  },
+  {
+    "at": "2026-05-08T18:28:02.601Z",
+    "focus": 72,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 80,
+      "posture": 39,
+      "presence": 100
+    },
+    "samples": 4246,
+    "type": "event",
+    "event": {
+      "elapsed": "06:06",
+      "id": "recovered",
+      "severity": "good",
+      "title": "กลับมาเข้าที่แล้ว"
+    }
+  },
+  {
+    "at": "2026-05-08T18:28:02.893Z",
+    "focus": 71,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 79,
+      "posture": 33,
+      "presence": 100
+    },
+    "samples": 4249,
+    "type": "event",
+    "event": {
+      "elapsed": "06:06",
+      "id": "recovered",
+      "severity": "good",
+      "title": "กลับมาเข้าที่แล้ว"
+    }
+  },
+  {
+    "at": "2026-05-08T18:28:07.238Z",
+    "focus": 73,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 75,
+      "posture": 45,
+      "presence": 100
+    },
+    "samples": 4297,
+    "type": "camera-snapshot",
+    "raw": {
+      "gazeX": 0.5028087886757957,
+      "headDrop": -0.20294609665870667,
+      "headPitch": 0.4958680995545302,
+      "headYaw": -0.0006121620535850525,
+      "lean": 0.03735002875328064,
+      "shoulderSlope": 0.09373503923416138
+    }
+  },
+  {
+    "at": "2026-05-08T18:28:08.757Z",
+    "focus": 70,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 51,
+      "posture": 45,
+      "presence": 100
+    },
+    "samples": 4314,
+    "type": "event",
+    "event": {
+      "elapsed": "06:12",
+      "id": "eyes-closed",
+      "severity": "warn",
+      "title": "พักสายตานานไปนิด"
+    }
+  },
+  {
+    "at": "2026-05-08T18:28:09.019Z",
+    "focus": 68,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 73,
+      "posture": 47,
+      "presence": 100
+    },
+    "samples": 4317,
+    "type": "event",
+    "event": {
+      "elapsed": "06:12",
+      "id": "recovered",
+      "severity": "good",
+      "title": "กลับมาเข้าที่แล้ว"
+    }
+  },
+  {
+    "at": "2026-05-08T18:28:12.291Z",
+    "focus": 74,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 73,
+      "posture": 52,
+      "presence": 100
+    },
+    "samples": 4354,
+    "type": "camera-snapshot",
+    "raw": {
+      "gazeX": 0.4990347566080459,
+      "headDrop": -0.19011947512626648,
+      "headPitch": 0.5322666860743305,
+      "headYaw": 0.0007197484374046326,
+      "lean": 0.028547242283821106,
+      "shoulderSlope": 0.08098107576370239
+    }
+  },
+  {
+    "at": "2026-05-08T18:28:12.558Z",
+    "focus": 71,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 50,
+      "posture": 49,
+      "presence": 100
+    },
+    "samples": 4357,
+    "type": "event",
+    "event": {
+      "elapsed": "06:16",
+      "id": "eyes-closed",
+      "severity": "warn",
+      "title": "พักสายตานานไปนิด"
+    }
+  },
+  {
+    "at": "2026-05-08T18:28:12.756Z",
+    "focus": 70,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 73,
+      "posture": 48,
+      "presence": 100
+    },
+    "samples": 4359,
+    "type": "event",
+    "event": {
+      "elapsed": "06:16",
+      "id": "recovered",
+      "severity": "good",
+      "title": "กลับมาเข้าที่แล้ว"
+    }
+  },
+  {
+    "at": "2026-05-08T18:28:16.029Z",
+    "focus": 72,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 73,
+      "posture": 30,
+      "presence": 100
+    },
+    "samples": 4397,
+    "type": "event",
+    "event": {
+      "elapsed": "06:19",
+      "id": "posture",
+      "severity": "warn",
+      "title": "ท่านั่งเปลี่ยน"
+    }
+  },
+  {
+    "at": "2026-05-08T18:28:16.424Z",
+    "focus": 69,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 75,
+      "posture": 35,
+      "presence": 100
+    },
+    "samples": 4402,
+    "type": "event",
+    "event": {
+      "elapsed": "06:19",
+      "id": "recovered",
+      "severity": "good",
+      "title": "กลับมาเข้าที่แล้ว"
+    }
+  },
+  {
+    "at": "2026-05-08T18:28:17.095Z",
+    "focus": 56,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 44,
+      "posture": 0,
+      "presence": 100
+    },
+    "samples": 4410,
+    "type": "event",
+    "event": {
+      "elapsed": "06:20",
+      "id": "eyes-closed",
+      "severity": "warn",
+      "title": "พักสายตานานไปนิด"
+    }
+  },
+  {
+    "at": "2026-05-08T18:28:17.342Z",
+    "focus": 49,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 40,
+      "posture": 0,
+      "presence": 100
+    },
+    "samples": 4413,
+    "type": "camera-snapshot",
+    "raw": {
+      "gazeX": 0.5234401016084068,
+      "headDrop": -0.1247408390045166,
+      "headPitch": 0.7082566868806486,
+      "headYaw": -0.000428907573223114,
+      "lean": 0.07511844485998154,
+      "shoulderSlope": 0.20601582527160645
+    }
+  },
+  {
+    "at": "2026-05-08T18:28:19.080Z",
+    "focus": 56,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 42,
+      "posture": 12,
+      "presence": 100
+    },
+    "samples": 4433,
+    "type": "event",
+    "event": {
+      "elapsed": "06:22",
+      "id": "eyes-closed",
+      "severity": "warn",
+      "title": "พักสายตานานไปนิด"
+    }
+  },
+  {
+    "at": "2026-05-08T18:29:06.484Z",
+    "focus": 60,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 51,
+      "posture": 27,
+      "presence": 100
+    },
+    "samples": 4451,
+    "type": "event",
+    "event": {
+      "elapsed": "07:09",
+      "id": "eyes-closed",
+      "severity": "warn",
+      "title": "พักสายตานานไปนิด"
+    }
+  },
+  {
+    "at": "2026-05-08T18:29:06.488Z",
+    "focus": 60,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 51,
+      "posture": 27,
+      "presence": 100
+    },
+    "samples": 4451,
+    "type": "camera-snapshot",
+    "raw": {
+      "gazeX": 0.49304891857064725,
+      "headDrop": -0.23499512672424316,
+      "headPitch": 0.48770854981422807,
+      "headYaw": -0.016780897974967957,
+      "lean": 0.05582194775342941,
+      "shoulderSlope": 0.12350738048553467
+    }
+  },
+  {
+    "at": "2026-05-08T18:29:06.693Z",
+    "focus": 64,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 74,
+      "posture": 30,
+      "presence": 100
+    },
+    "samples": 4453,
+    "type": "event",
+    "event": {
+      "elapsed": "07:10",
+      "id": "recovered",
+      "severity": "good",
+      "title": "กลับมาเข้าที่แล้ว"
+    }
+  },
+  {
+    "at": "2026-05-08T18:44:25.229Z",
+    "focus": 59,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 0,
+      "posture": 26,
+      "presence": 0
+    },
+    "samples": 4467,
+    "type": "event",
+    "event": {
+      "elapsed": "22:28",
+      "id": "no-face",
+      "severity": "bad",
+      "title": "บัดดี้มองไม่เห็นเรา"
+    }
+  },
+  {
+    "at": "2026-05-08T18:44:25.232Z",
+    "focus": 59,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 0,
+      "posture": 26,
+      "presence": 0
+    },
+    "samples": 4467,
+    "type": "event",
+    "event": {
+      "elapsed": "22:28",
+      "id": "posture",
+      "severity": "warn",
+      "title": "ท่านั่งเปลี่ยน"
+    }
+  },
+  {
+    "at": "2026-05-08T18:44:25.234Z",
+    "focus": 59,
+    "latestMetrics": {
+      "action": 100,
+      "eye": 0,
+      "posture": 26,
+      "presence": 0
+    },
+    "samples": 4467,
+    "type": "camera-snapshot",
+    "raw": {
+      "headDrop": -0.21646320819854736,
+      "lean": 0.024064961820840836,
+      "shoulderSlope": 0.12610042095184326
+    }
+  }
+]

@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>kamun</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
+    <script type="module" src="./app.js"></script>
+  </head>
+  <body>
+    <div class="scene-sky" aria-hidden="true">
+      <div class="sun"></div>
+      <div class="cloud cloud-one"></div>
+      <div class="cloud cloud-two"></div>
+      <div class="cloud cloud-three"></div>
+      <div class="mountains"></div>
+      <div class="tree tree-left"></div>
+      <div class="tree tree-right"></div>
+      <div class="buddy-parade">
+        <span class="buddy buddy-purple"></span>
+        <span class="buddy buddy-blue"></span>
+        <span class="buddy buddy-main"></span>
+        <span class="buddy buddy-orange"></span>
+        <span class="buddy buddy-pink"></span>
+      </div>
+      <div class="grass"></div>
+    </div>
+    <main class="app-shell">
+      <header class="topbar">
+        <div class="brand-block">
+          <div class="brand-mark" aria-hidden="true">
+            <i data-lucide="scan-eye"></i>
+          </div>
+          <div>
+            <p class="eyebrow">Kids Focus Coach</p>
+            <h1>kamun</h1>
+          </div>
+        </div>
+
+        <div class="topbar-actions">
+          <div class="status-pill" id="modelStatus">
+            <span class="pulse-dot"></span>
+            กำลังโหลดโมเดล
+          </div>
+          <button class="icon-button primary" id="startBtn" type="button" disabled>
+            <i data-lucide="camera"></i>
+            <span>เริ่มวัด</span>
+          </button>
+          <button class="icon-button" id="stopBtn" type="button" disabled>
+            <i data-lucide="pause"></i>
+            <span>หยุด</span>
+          </button>
+          <div class="log-menu-wrap">
+            <button class="log-menu-button" id="logMenuBtn" type="button" aria-expanded="false" aria-controls="logMenu">
+              <span class="log-avatar">บ</span>
+              <i data-lucide="chevron-down"></i>
+            </button>
+            <div class="log-menu" id="logMenu" hidden>
+              <p class="log-menu-kicker">เข้าสู่ระบบอยู่</p>
+              <div class="log-profile">
+                <span class="log-avatar large">บ</span>
+                <div>
+                  <strong>กมล</strong>
+                  <span>บันทึก log จากกล้องไว้เบื้องหลัง</span>
+                </div>
+              </div>
+              <button class="log-refresh" id="refreshLogsBtn" type="button">
+                <i data-lucide="refresh-cw"></i>
+                <span>ดู log ล่าสุด</span>
+              </button>
+              <ol class="log-preview-list" id="logPreviewList">
+                <li>ยังไม่มี log</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="workspace">
+        <section class="camera-panel" aria-label="กล้องตรวจจับโฟกัส">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Live signals</p>
+              <h2>กล้องและสัญญาณ</h2>
+            </div>
+            <div class="session-clock" id="sessionClock">00:00</div>
+          </div>
+
+          <div class="stage">
+            <video id="video" autoplay playsinline muted></video>
+            <canvas id="overlay"></canvas>
+            <div class="camera-empty" id="cameraEmpty">
+              <i data-lucide="camera-off"></i>
+              <strong>พร้อมเปิดกล้อง</strong>
+              <span>การประมวลผลเกิดบนเบราว์เซอร์นี้</span>
+            </div>
+
+            <div class="stage-badges">
+              <div class="signal-badge good" id="gazeBadge">
+                <i data-lucide="eye"></i>
+                <span>สายตา: รอข้อมูล</span>
+              </div>
+              <div class="signal-badge good" id="postureBadge">
+                <i data-lucide="activity"></i>
+                <span>ท่าทาง: รอข้อมูล</span>
+              </div>
+              <div class="signal-badge good" id="actionBadge">
+                <i data-lucide="hand"></i>
+                <span>แอ็กชัน: รอข้อมูล</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="calibration-strip">
+            <div>
+              <strong id="calibrationState">ยังไม่ได้คาลิเบรต</strong>
+              <span>ตั้งค่ากึ่งกลางจากท่านั่งและสายตาปัจจุบัน</span>
+            </div>
+            <button class="icon-button" id="calibrateBtn" type="button" disabled>
+              <i data-lucide="crosshair"></i>
+              <span>Calibrate</span>
+            </button>
+          </div>
+
+          <div class="trend-panel">
+            <div class="mini-heading">
+              <span>Focus trend</span>
+              <strong id="sampleCount">0 samples</strong>
+            </div>
+            <canvas id="trendCanvas" width="900" height="180" aria-label="กราฟคะแนนโฟกัส"></canvas>
+          </div>
+
+          <section class="chat-panel">
+            <section class="course-picker" aria-label="เลือกวิชาที่อยากเรียน">
+              <div class="course-heading">
+                <span>เลือกวิชาที่อยากเรียน</span>
+                <strong id="selectedCourseLabel">คณิตศาสตร์</strong>
+              </div>
+              <div class="course-grid">
+                <button class="course-card active" type="button" data-course="math">
+                  <i data-lucide="calculator"></i>
+                  <span>คณิตศาสตร์</span>
+                </button>
+                <button class="course-card" type="button" data-course="science">
+                  <i data-lucide="flask-conical"></i>
+                  <span>วิทยาศาสตร์</span>
+                </button>
+                <button class="course-card" type="button" data-course="thai">
+                  <i data-lucide="book-open-text"></i>
+                  <span>ภาษาไทย</span>
+                </button>
+                <button class="course-card" type="button" data-course="english">
+                  <i data-lucide="languages"></i>
+                  <span>ภาษาอังกฤษ</span>
+                </button>
+                <button class="course-card" type="button" data-course="social">
+                  <i data-lucide="landmark"></i>
+                  <span>สังคมศึกษา</span>
+                </button>
+                <button class="course-card" type="button" data-course="coding">
+                  <i data-lucide="blocks"></i>
+                  <span>โค้ดดิ้ง</span>
+                </button>
+              </div>
+            </section>
+
+            <div class="mini-heading">
+              <span id="behaviorTitle">Behavior AI</span>
+              <strong id="typingStatus">Idle</strong>
+            </div>
+            <p class="chat-disclaimer" id="chatDisclaimer">
+              Behavioral screening only. This assistant summarizes patterns from typing and prior usage. It is not a diagnosis.
+            </p>
+
+            <div class="behavior-grid">
+              <article class="behavior-card">
+                <span id="typingSpeedLabel">Typing speed</span>
+                <strong id="typingSpeedValue">0 CPM</strong>
+              </article>
+              <article class="behavior-card">
+                <span id="messageLengthLabel">Message length</span>
+                <strong id="messageLengthValue">0 chars</strong>
+              </article>
+              <article class="behavior-card">
+                <span id="recordingWindowLabel">Recording window</span>
+                <strong id="recordingWindowValue">00:00</strong>
+              </article>
+              <article class="behavior-card">
+                <span id="editRatioLabel">Edit ratio</span>
+                <strong id="editRatioValue">0%</strong>
+              </article>
+              <article class="behavior-card">
+                <span id="typingStartedLabel">Started at</span>
+                <strong id="typingStartedValue">--</strong>
+              </article>
+              <article class="behavior-card">
+                <span id="behaviorSignalLabel">Behavior signal</span>
+                <strong id="behaviorSignalValue">Low</strong>
+              </article>
+            </div>
+
+            <div class="chat-thread" id="chatThread">
+              <article class="chat-bubble assistant">
+                <strong>Behavior AI</strong>
+                <p>Share a short update about what you are doing. I will record the window from first typing until Analyze, then combine timing, wording, and previous behavior into a screening summary.</p>
+              </article>
+            </div>
+
+            <label class="chat-composer" for="chatInput">
+              <span id="chatInputLabel">Check-in text</span>
+              <textarea
+                id="chatInput"
+                rows="5"
+                placeholder="Example: I keep jumping between tabs and rewriting the same sentence."
+              ></textarea>
+            </label>
+
+            <div class="control-buttons">
+              <button class="icon-button" id="clearChatBtn" type="button">
+                <i data-lucide="eraser"></i>
+                <span id="clearChatLabel">Clear</span>
+              </button>
+              <button class="icon-button primary" id="sendChatBtn" type="button">
+                <i data-lucide="messages-square"></i>
+                <span id="sendChatLabel">Analyze</span>
+              </button>
+            </div>
+          </section>
+        </section>
+
+        <aside class="insight-rail" aria-label="คะแนนและเหตุการณ์">
+          <section class="score-panel">
+            <div class="score-ring" id="scoreRing" style="--score: 0">
+              <div>
+                <span id="focusScore">0</span>
+                <small>Focus</small>
+              </div>
+            </div>
+            <div class="score-copy">
+              <p class="eyebrow">Current score</p>
+              <h2 id="focusLabel">ยังไม่เริ่มวัด</h2>
+              <p id="focusHint">เปิดกล้องเพื่อเริ่มประเมินสายตา ท่าทาง และแอ็กชัน</p>
+            </div>
+          </section>
+
+          <section class="metric-grid">
+            <article class="metric-card">
+              <div class="metric-head">
+                <span>Eye tracking</span>
+                <strong id="eyeScore">0%</strong>
+              </div>
+              <div class="meter"><span id="eyeMeter"></span></div>
+            </article>
+            <article class="metric-card">
+              <div class="metric-head">
+                <span>Posture</span>
+                <strong id="postureScore">0%</strong>
+              </div>
+              <div class="meter"><span id="postureMeter"></span></div>
+            </article>
+            <article class="metric-card">
+              <div class="metric-head">
+                <span>Actions</span>
+                <strong id="actionScore">0%</strong>
+              </div>
+              <div class="meter"><span id="actionMeter"></span></div>
+            </article>
+            <article class="metric-card">
+              <div class="metric-head">
+                <span>Presence</span>
+                <strong id="presenceScore">0%</strong>
+              </div>
+              <div class="meter"><span id="presenceMeter"></span></div>
+            </article>
+          </section>
+
+          <section class="controls-panel">
+            <div class="mini-heading">
+              <span>Mode</span>
+              <strong id="modeLabel">Balanced</strong>
+            </div>
+            <div class="segmented" role="group" aria-label="โหมดการวัด">
+              <button class="segment" type="button" data-preset="strict">Strict</button>
+              <button class="segment active" type="button" data-preset="balanced">Balanced</button>
+              <button class="segment" type="button" data-preset="relaxed">Relaxed</button>
+            </div>
+
+            <label class="range-row">
+              <span>Eye tolerance</span>
+              <input id="gazeTolerance" type="range" min="12" max="34" value="22" />
+              <strong id="gazeToleranceValue">22</strong>
+            </label>
+            <label class="range-row">
+              <span>Posture tolerance</span>
+              <input id="postureTolerance" type="range" min="8" max="28" value="16" />
+              <strong id="postureToleranceValue">16</strong>
+            </label>
+            <label class="range-row">
+              <span>Action tolerance</span>
+              <input id="actionTolerance" type="range" min="10" max="40" value="24" />
+              <strong id="actionToleranceValue">24</strong>
+            </label>
+
+            <div class="control-buttons">
+              <button class="icon-button" id="resetBtn" type="button">
+                <i data-lucide="rotate-ccw"></i>
+                <span>Reset</span>
+              </button>
+              <button class="icon-button" id="exportBtn" type="button">
+                <i data-lucide="download"></i>
+                <span>Export</span>
+              </button>
+            </div>
+          </section>
+
+          <section class="events-panel">
+            <div class="mini-heading">
+              <span>Events</span>
+              <strong id="eventCount">0</strong>
+            </div>
+            <ol class="event-list" id="eventList">
+              <li class="event-empty">ยังไม่มีเหตุการณ์</li>
+            </ol>
+          </section>
+        </aside>
+      </section>
+    </main>
+  </body>
+</html>
