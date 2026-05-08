@@ -2,13 +2,14 @@ const scoring = window.CognitiveDebtScoring;
 const STORAGE_KEY = "cdt_web_turns";
 
 const samplePrompts = {
-  bad: "ช่วยคิดไอเดีย startup ให้หน่อย",
-  good: "ผมคิดว่า wellness product สำหรับ remote workers ควรแก้ loneliness เพราะผู้ใช้ขาด social feedback ช่วย challenge assumption นี้ ถามกลับ 2 คำถาม และเสนอ counterargument 3 ข้อ"
+  bad: "Give me startup ideas.",
+  good: "I think remote workers need a wellness product for loneliness because they lack social feedback. Challenge this assumption, ask 2 clarifying questions, and give 3 counterarguments."
 };
 
 const state = {
   turns: loadTurns(),
   focusEnabled: true,
+  webcamStream: null,
   focus: {
     score: 82,
     blinks: 16,
@@ -40,6 +41,15 @@ const els = {
   gazeRate: document.getElementById("gazeRate"),
   combinedState: document.getElementById("combinedState"),
   focusGrid: document.getElementById("focusGrid"),
+  tabButtons: Array.from(document.querySelectorAll("[data-tab-target]")),
+  tabPanels: Array.from(document.querySelectorAll(".tab-panel")),
+  webcamVideo: document.getElementById("webcamVideo"),
+  webcamEmpty: document.getElementById("webcamEmpty"),
+  startWebcam: document.getElementById("startWebcam"),
+  stopWebcam: document.getElementById("stopWebcam"),
+  cameraStatus: document.getElementById("cameraStatus"),
+  presenceStatus: document.getElementById("presenceStatus"),
+  webcamFocusScore: document.getElementById("webcamFocusScore"),
   loadBadPrompt: document.getElementById("loadBadPrompt"),
   loadGoodPrompt: document.getElementById("loadGoodPrompt")
 };
@@ -98,9 +108,10 @@ function addMessage(kind, label, text) {
   `;
   els.conversation.appendChild(article);
   els.conversation.scrollTop = els.conversation.scrollHeight;
+  return article;
 }
 
-function analyzePrompt(prompt) {
+async function analyzePrompt(prompt) {
   const clean = prompt.trim();
   if (!clean) return;
   const previous = state.turns[state.turns.length - 1] || null;
@@ -112,6 +123,89 @@ function analyzePrompt(prompt) {
   addMessage("user", "Prompt", clean);
   addMessage("coach", "Thinking receipt", `${turn.impact} Try this next: ${turn.provocations[0]}`);
   render();
+  await generateAiAnswer(clean);
+}
+
+async function generateAiAnswer(prompt) {
+  const pending = addMessage("ai", "AI response", "Thinking...");
+  try {
+    const response = await fetch("/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt })
+    });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || "Backend request failed.");
+    pending.querySelector("p").textContent = data.answer;
+  } catch (error) {
+    pending.querySelector("p").textContent = fallbackAnswer(prompt, error);
+  }
+  els.conversation.scrollTop = els.conversation.scrollHeight;
+}
+
+function fallbackAnswer(prompt, error) {
+  const reason = error instanceof Error ? error.message : "backend unavailable";
+  return `Backend fallback: I could not reach the LLM (${reason}). For demo flow, keep using the debt score and intervention panel. Prompt received: "${prompt.slice(0, 120)}"`;
+}
+
+function switchTab(targetId) {
+  els.tabButtons.forEach((button) => {
+    const isActive = button.dataset.tabTarget === targetId;
+    button.classList.toggle("is-active", isActive);
+    button.setAttribute("aria-selected", String(isActive));
+  });
+  els.tabPanels.forEach((panel) => {
+    const isActive = panel.id === targetId;
+    panel.classList.toggle("is-active", isActive);
+    panel.hidden = !isActive;
+  });
+}
+
+async function startWebcam() {
+  if (!navigator.mediaDevices?.getUserMedia) {
+    setCameraStatus("Unavailable", "No camera API", "-");
+    return;
+  }
+
+  try {
+    if (state.webcamStream) stopWebcam();
+    setCameraStatus("Requesting", "Waiting", "-");
+    const stream = await navigator.mediaDevices.getUserMedia({
+      video: {
+        width: { ideal: 1280 },
+        height: { ideal: 720 },
+        facingMode: "user"
+      },
+      audio: false
+    });
+    state.webcamStream = stream;
+    els.webcamVideo.srcObject = stream;
+    els.webcamEmpty.classList.add("is-hidden");
+    state.focusEnabled = true;
+    els.focusToggle.checked = true;
+    setCameraStatus("Live", "Face visible", state.focus.score);
+    renderFocus(state.turns[state.turns.length - 1] || null);
+  } catch (error) {
+    const message = error instanceof Error && error.name === "NotAllowedError" ? "Permission denied" : "Camera blocked";
+    setCameraStatus(message, "Unknown", "-");
+    els.webcamEmpty.classList.remove("is-hidden");
+  }
+}
+
+function stopWebcam() {
+  if (state.webcamStream) {
+    state.webcamStream.getTracks().forEach((track) => track.stop());
+  }
+  state.webcamStream = null;
+  els.webcamVideo.srcObject = null;
+  els.webcamEmpty.classList.remove("is-hidden");
+  setCameraStatus("Paused", "Unknown", "-");
+}
+
+function setCameraStatus(camera, presence, focusScore) {
+  els.cameraStatus.textContent = camera;
+  els.presenceStatus.textContent = presence;
+  els.webcamFocusScore.textContent = focusScore;
 }
 
 function render() {
@@ -195,6 +289,9 @@ function renderFocus(latest) {
   els.blinkRate.textContent = state.focus.blinks;
   els.gazeRate.textContent = `${state.focus.gaze}%`;
   els.combinedState.textContent = combinedState(latest);
+  if (state.webcamStream) {
+    setCameraStatus("Live", "Face visible", state.focus.score);
+  }
 }
 
 function renderPitchReceipt(latest) {
@@ -234,6 +331,13 @@ els.focusToggle.addEventListener("change", () => {
   state.focusEnabled = els.focusToggle.checked;
   render();
 });
+
+els.tabButtons.forEach((button) => {
+  button.addEventListener("click", () => switchTab(button.dataset.tabTarget));
+});
+
+els.startWebcam.addEventListener("click", startWebcam);
+els.stopWebcam.addEventListener("click", stopWebcam);
 
 setInterval(() => renderFocus(state.turns[state.turns.length - 1] || null), 2400);
 render();

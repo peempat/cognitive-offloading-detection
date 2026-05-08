@@ -6,11 +6,30 @@ The Vercel-ready web app is the main demo. The Chrome extension remains as a pro
 
 ## Web Demo
 
-Open `index.html` directly, serve this folder locally, or deploy the repository to Vercel.
+Run the local backend:
+
+```powershell
+node server.mjs
+```
+
+Then open:
+
+```text
+http://localhost:4174
+```
+
+For Vercel, add one environment variable:
+
+```text
+OPENAI_API_KEY=your_api_key
+```
+
+The app can still open as a static `index.html`, but AI chat responses require the backend route.
 
 The app scores each prompt locally, then shows:
 
 - Cognitive Debt Score
+- AI chat response from `/api/chat`
 - Bloom level estimate
 - Thinking impact summary
 - Prompt rewrite suggestion

@@ -39,21 +39,58 @@
             </div>
           </div>
 
-          <div class="conversation" id="conversation" aria-live="polite">
-            <article class="message system-message">
-              <div class="message-label">Coach</div>
-              <p>Type a prompt as if you were asking ChatGPT or Claude. The tracker will score how much thinking you bring before AI answers.</p>
-            </article>
+          <div class="tab-bar" role="tablist" aria-label="Demo surfaces">
+            <button class="tab-button is-active" type="button" role="tab" aria-selected="true" aria-controls="promptPanel" id="promptTab" data-tab-target="promptPanel">Prompt Lab</button>
+            <button class="tab-button" type="button" role="tab" aria-selected="false" aria-controls="webcamPanel" id="webcamTab" data-tab-target="webcamPanel">Webcam Focus</button>
           </div>
 
-          <form class="composer" id="promptForm">
-            <label class="sr-only" for="promptInput">Prompt</label>
-            <textarea id="promptInput" rows="5" placeholder="Example: ช่วยคิดไอเดีย startup ให้หน่อย"></textarea>
-            <div class="composer-footer">
-              <p id="composerHint">Low score means AI amplifies your thinking. High score means AI replaces it.</p>
-              <button type="submit">Analyze prompt</button>
+          <div class="tab-panel is-active" id="promptPanel" role="tabpanel" aria-labelledby="promptTab">
+            <div class="conversation" id="conversation" aria-live="polite">
+              <article class="message system-message">
+                <div class="message-label">Coach</div>
+                <p>Type a prompt as if you were asking ChatGPT or Claude. The tracker will score how much thinking you bring before AI answers.</p>
+              </article>
             </div>
-          </form>
+
+            <form class="composer" id="promptForm">
+              <label class="sr-only" for="promptInput">Prompt</label>
+              <textarea id="promptInput" rows="5" placeholder="Example: Give me startup ideas."></textarea>
+              <div class="composer-footer">
+                <p id="composerHint">Low score means AI amplifies your thinking. High score means AI replaces it.</p>
+                <button type="submit">Analyze prompt</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="tab-panel" id="webcamPanel" role="tabpanel" aria-labelledby="webcamTab" hidden>
+            <div class="webcam-stage">
+              <div class="video-frame">
+                <video id="webcamVideo" autoplay playsinline muted></video>
+                <div class="video-empty" id="webcamEmpty">
+                  <span>Camera paused</span>
+                  <p>Start webcam to preview the opt-in focus layer.</p>
+                </div>
+              </div>
+              <div class="webcam-controls">
+                <div>
+                  <p class="eyebrow">On-device attention prototype</p>
+                  <h3>Webcam Focus Layer</h3>
+                  <p>Designed for local-only blink, gaze, and presence signals. This demo shows the permission flow and live preview surface.</p>
+                </div>
+                <div class="webcam-actions">
+                  <button type="button" id="startWebcam">Start webcam</button>
+                  <button type="button" class="secondary-button" id="stopWebcam">Stop</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="webcam-metrics">
+              <div><span>Status</span><strong id="cameraStatus">Paused</strong></div>
+              <div><span>Presence</span><strong id="presenceStatus">Unknown</strong></div>
+              <div><span>Focus score</span><strong id="webcamFocusScore">-</strong></div>
+              <div><span>Telemetry</span><strong>Local only</strong></div>
+            </div>
+          </div>
         </section>
 
         <aside class="insight-rail" aria-label="Cognitive debt insights">
