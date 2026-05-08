@@ -66,6 +66,7 @@
             <div class="webcam-stage">
               <div class="video-frame">
                 <video id="webcamVideo" autoplay playsinline muted></video>
+                <canvas id="landmarkCanvas" aria-hidden="true"></canvas>
                 <div class="video-empty" id="webcamEmpty">
                   <span>Camera paused</span>
                   <p>Start webcam to preview the opt-in focus layer.</p>
@@ -88,7 +89,7 @@
               <div><span>Status</span><strong id="cameraStatus">Paused</strong></div>
               <div><span>Presence</span><strong id="presenceStatus">Unknown</strong></div>
               <div><span>Focus score</span><strong id="webcamFocusScore">-</strong></div>
-              <div><span>Telemetry</span><strong>Local only</strong></div>
+              <div><span>Landmarks</span><strong id="landmarkStatus">Off</strong></div>
             </div>
           </div>
         </section>

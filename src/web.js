@@ -1,5 +1,8 @@
 const scoring = window.CognitiveDebtScoring;
 const STORAGE_KEY = "cdt_web_turns";
+const MEDIAPIPE_VERSION = "0.10.14";
+const MEDIAPIPE_BASE = `https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@${MEDIAPIPE_VERSION}`;
+const FACE_MODEL_URL = "https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/latest/face_landmarker.task";
 
 const samplePrompts = {
   bad: "Give me startup ideas.",
@@ -10,6 +13,12 @@ const state = {
   turns: loadTurns(),
   focusEnabled: true,
   webcamStream: null,
+  mediaPipe: null,
+  faceLandmarker: null,
+  landmarkLoop: null,
+  lastVideoTime: -1,
+  blinkClosed: false,
+  blinkEvents: [],
   focus: {
     score: 82,
     blinks: 16,
@@ -44,12 +53,14 @@ const els = {
   tabButtons: Array.from(document.querySelectorAll("[data-tab-target]")),
   tabPanels: Array.from(document.querySelectorAll(".tab-panel")),
   webcamVideo: document.getElementById("webcamVideo"),
+  landmarkCanvas: document.getElementById("landmarkCanvas"),
   webcamEmpty: document.getElementById("webcamEmpty"),
   startWebcam: document.getElementById("startWebcam"),
   stopWebcam: document.getElementById("stopWebcam"),
   cameraStatus: document.getElementById("cameraStatus"),
   presenceStatus: document.getElementById("presenceStatus"),
   webcamFocusScore: document.getElementById("webcamFocusScore"),
+  landmarkStatus: document.getElementById("landmarkStatus"),
   loadBadPrompt: document.getElementById("loadBadPrompt"),
   loadGoodPrompt: document.getElementById("loadGoodPrompt")
 };
@@ -163,13 +174,13 @@ function switchTab(targetId) {
 
 async function startWebcam() {
   if (!navigator.mediaDevices?.getUserMedia) {
-    setCameraStatus("Unavailable", "No camera API", "-");
+    setCameraStatus("Unavailable", "No camera API", "-", "Off");
     return;
   }
 
   try {
     if (state.webcamStream) stopWebcam();
-    setCameraStatus("Requesting", "Waiting", "-");
+    setCameraStatus("Requesting", "Waiting", "-", "Loading");
     const stream = await navigator.mediaDevices.getUserMedia({
       video: {
         width: { ideal: 1280 },
@@ -183,29 +194,185 @@ async function startWebcam() {
     els.webcamEmpty.classList.add("is-hidden");
     state.focusEnabled = true;
     els.focusToggle.checked = true;
-    setCameraStatus("Live", "Face visible", state.focus.score);
+    setCameraStatus("Live", "Detecting", state.focus.score, "Loading");
     renderFocus(state.turns[state.turns.length - 1] || null);
+    await startMediaPipeLoop();
   } catch (error) {
     const message = error instanceof Error && error.name === "NotAllowedError" ? "Permission denied" : "Camera blocked";
-    setCameraStatus(message, "Unknown", "-");
+    setCameraStatus(message, "Unknown", "-", "Off");
     els.webcamEmpty.classList.remove("is-hidden");
   }
 }
 
 function stopWebcam() {
+  if (state.landmarkLoop) {
+    cancelAnimationFrame(state.landmarkLoop);
+    state.landmarkLoop = null;
+  }
   if (state.webcamStream) {
     state.webcamStream.getTracks().forEach((track) => track.stop());
   }
   state.webcamStream = null;
+  state.lastVideoTime = -1;
+  state.blinkClosed = false;
   els.webcamVideo.srcObject = null;
+  clearLandmarks();
   els.webcamEmpty.classList.remove("is-hidden");
-  setCameraStatus("Paused", "Unknown", "-");
+  setCameraStatus("Paused", "Unknown", "-", "Off");
 }
 
-function setCameraStatus(camera, presence, focusScore) {
+function setCameraStatus(camera, presence, focusScore, landmarks = els.landmarkStatus.textContent) {
   els.cameraStatus.textContent = camera;
   els.presenceStatus.textContent = presence;
   els.webcamFocusScore.textContent = focusScore;
+  els.landmarkStatus.textContent = landmarks;
+}
+
+async function startMediaPipeLoop() {
+  try {
+    await initMediaPipe();
+    setCameraStatus("Live", "Detecting", state.focus.score, "On");
+    state.landmarkLoop = requestAnimationFrame(detectLandmarks);
+  } catch (error) {
+    console.warn("MediaPipe unavailable", error);
+    setCameraStatus("Live", "Preview only", state.focus.score, "Unavailable");
+  }
+}
+
+async function initMediaPipe() {
+  if (state.faceLandmarker) return;
+  const mediaPipe = await import(`${MEDIAPIPE_BASE}/+esm`);
+  const vision = await mediaPipe.FilesetResolver.forVisionTasks(`${MEDIAPIPE_BASE}/wasm`);
+  state.faceLandmarker = await mediaPipe.FaceLandmarker.createFromOptions(vision, {
+    baseOptions: {
+      modelAssetPath: FACE_MODEL_URL,
+      delegate: "GPU"
+    },
+    outputFaceBlendshapes: true,
+    runningMode: "VIDEO",
+    numFaces: 1
+  });
+  state.mediaPipe = mediaPipe;
+}
+
+function detectLandmarks() {
+  if (!state.webcamStream || !state.faceLandmarker) return;
+  const video = els.webcamVideo;
+  if (video.readyState >= 2 && video.currentTime !== state.lastVideoTime) {
+    state.lastVideoTime = video.currentTime;
+    const result = state.faceLandmarker.detectForVideo(video, performance.now());
+    updateFocusFromLandmarks(result);
+    drawLandmarks(result);
+  }
+  state.landmarkLoop = requestAnimationFrame(detectLandmarks);
+}
+
+function updateFocusFromLandmarks(result) {
+  const face = result.faceLandmarks?.[0];
+  const blendshapes = result.faceBlendshapes?.[0]?.categories || [];
+  if (!face) {
+    state.focus.score = 35;
+    state.focus.gaze = 0;
+    setCameraStatus("Live", "No face", state.focus.score, "On");
+    renderFocusValues();
+    return;
+  }
+
+  const blinkLeft = getBlendshapeScore(blendshapes, "eyeBlinkLeft");
+  const blinkRight = getBlendshapeScore(blendshapes, "eyeBlinkRight");
+  const blinkScore = (blinkLeft + blinkRight) / 2;
+  updateBlinkRate(blinkScore);
+
+  const nose = face[1] || face[4] || { x: 0.5, y: 0.5 };
+  const eyeCenterX = ((face[33]?.x || 0.32) + (face[263]?.x || 0.68)) / 2;
+  const gazeOffset = Math.abs(nose.x - eyeCenterX);
+  const gazeOnTask = Math.max(35, Math.min(98, Math.round(100 - gazeOffset * 260)));
+  const blinkHealth = state.focus.blinks >= 8 && state.focus.blinks <= 24 ? 92 : 72;
+
+  state.focus.gaze = gazeOnTask;
+  state.focus.score = Math.round(0.4 * 100 + 0.35 * gazeOnTask + 0.25 * blinkHealth);
+  setCameraStatus("Live", "Face visible", state.focus.score, "On");
+  renderFocusValues();
+}
+
+function updateBlinkRate(blinkScore) {
+  const now = Date.now();
+  const isClosed = blinkScore > 0.45;
+  if (isClosed && !state.blinkClosed) state.blinkEvents.push(now);
+  state.blinkClosed = isClosed;
+  state.blinkEvents = state.blinkEvents.filter((time) => now - time < 60000);
+  state.focus.blinks = state.blinkEvents.length;
+}
+
+function getBlendshapeScore(categories, name) {
+  return categories.find((category) => category.categoryName === name)?.score || 0;
+}
+
+function drawLandmarks(result) {
+  const canvas = els.landmarkCanvas;
+  const video = els.webcamVideo;
+  if (!video.videoWidth || !video.videoHeight) return;
+  if (canvas.width !== video.videoWidth || canvas.height !== video.videoHeight) {
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+  }
+
+  const ctx = canvas.getContext("2d");
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const face = result.faceLandmarks?.[0];
+  if (!face || !state.mediaPipe?.FaceLandmarker) return;
+
+  const sets = [
+    state.mediaPipe.FaceLandmarker.FACE_LANDMARKS_TESSELATION,
+    state.mediaPipe.FaceLandmarker.FACE_LANDMARKS_FACE_OVAL,
+    state.mediaPipe.FaceLandmarker.FACE_LANDMARKS_LEFT_EYE,
+    state.mediaPipe.FaceLandmarker.FACE_LANDMARKS_RIGHT_EYE,
+    state.mediaPipe.FaceLandmarker.FACE_LANDMARKS_LEFT_EYEBROW,
+    state.mediaPipe.FaceLandmarker.FACE_LANDMARKS_RIGHT_EYEBROW,
+    state.mediaPipe.FaceLandmarker.FACE_LANDMARKS_LIPS
+  ];
+
+  ctx.lineWidth = 1;
+  for (const connectors of sets) drawConnectors(ctx, face, connectors, "rgba(78, 214, 163, 0.42)");
+  drawPoints(ctx, face, "rgba(255, 255, 255, 0.78)");
+}
+
+function drawConnectors(ctx, landmarks, connectors, color) {
+  ctx.strokeStyle = color;
+  ctx.beginPath();
+  for (const connector of connectors || []) {
+    const start = landmarks[connector.start];
+    const end = landmarks[connector.end];
+    if (!start || !end) continue;
+    ctx.moveTo(start.x * ctx.canvas.width, start.y * ctx.canvas.height);
+    ctx.lineTo(end.x * ctx.canvas.width, end.y * ctx.canvas.height);
+  }
+  ctx.stroke();
+}
+
+function drawPoints(ctx, landmarks, color) {
+  ctx.fillStyle = color;
+  const step = Math.max(1, Math.floor(landmarks.length / 140));
+  for (let index = 0; index < landmarks.length; index += step) {
+    const point = landmarks[index];
+    ctx.beginPath();
+    ctx.arc(point.x * ctx.canvas.width, point.y * ctx.canvas.height, 1.8, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+
+function clearLandmarks() {
+  const ctx = els.landmarkCanvas.getContext("2d");
+  ctx.clearRect(0, 0, els.landmarkCanvas.width, els.landmarkCanvas.height);
+}
+
+function renderFocusValues() {
+  els.focusGrid.style.opacity = "1";
+  els.focusScore.textContent = state.focus.score;
+  els.blinkRate.textContent = state.focus.blinks;
+  els.gazeRate.textContent = `${state.focus.gaze}%`;
+  els.combinedState.textContent = combinedState(state.turns[state.turns.length - 1] || null);
+  els.webcamFocusScore.textContent = state.focus.score;
 }
 
 function render() {
@@ -279,6 +446,11 @@ function renderFocus(latest) {
     return;
   }
 
+  if (state.webcamStream) {
+    renderFocusValues();
+    return;
+  }
+
   const latestDebt = latest ? latest.turnDebt : 32;
   state.focus.score = Math.max(38, Math.min(96, Math.round(88 - latestDebt * 0.22 + Math.sin(Date.now() / 9000) * 5)));
   state.focus.blinks = Math.max(8, Math.min(28, Math.round(15 + latestDebt / 18)));
@@ -289,9 +461,6 @@ function renderFocus(latest) {
   els.blinkRate.textContent = state.focus.blinks;
   els.gazeRate.textContent = `${state.focus.gaze}%`;
   els.combinedState.textContent = combinedState(latest);
-  if (state.webcamStream) {
-    setCameraStatus("Live", "Face visible", state.focus.score);
-  }
 }
 
 function renderPitchReceipt(latest) {

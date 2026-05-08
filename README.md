@@ -35,7 +35,7 @@ The app scores each prompt locally, then shows:
 - Prompt rewrite suggestion
 - Provocation questions
 - Session trend and Bloom breakdown
-- Simulated focus layer for eye-tracking, blink, and gaze V2
+- MediaPipe webcam focus layer with face landmarks, blink rate, and rough gaze-on-task estimate
 
 ## Chrome Extension Demo
 
