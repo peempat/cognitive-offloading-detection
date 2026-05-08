@@ -1,17 +1,24 @@
 # Cognitive Debt Tracker
 
-A Chrome extension demo for hackathon theme **Wellness in Post-AGI Era**.
+A web app + Chrome extension demo for the hackathon theme **Wellness in Post-AGI Era**.
 
-It overlays a small cognitive wellness coach on ChatGPT and Claude, scores each prompt locally, then shows:
+The Vercel-ready web app is the main demo. The Chrome extension remains as a proof-of-deployment layer for ChatGPT and Claude.
+
+## Web Demo
+
+Open `index.html` directly, serve this folder locally, or deploy the repository to Vercel.
+
+The app scores each prompt locally, then shows:
 
 - Cognitive Debt Score
 - Bloom level estimate
 - Thinking impact summary
 - Prompt rewrite suggestion
 - Provocation questions
-- Session trend in the extension popup
+- Session trend and Bloom breakdown
+- Simulated focus layer for eye-tracking, blink, and gaze V2
 
-## Install demo
+## Chrome Extension Demo
 
 1. Open `chrome://extensions`
 2. Enable **Developer mode**
@@ -21,18 +28,18 @@ It overlays a small cognitive wellness coach on ChatGPT and Claude, scores each 
 
 If auto-capture misses the site, paste the prompt into **Manual analyze** in the floating panel.
 
-## Demo prompts
+## Demo Prompts
 
 High debt:
 
 ```text
-ช่วยคิดไอเดีย startup ให้หน่อย
+Give me startup ideas.
 ```
 
 Lower debt:
 
 ```text
-ผมคิดว่า wellness product สำหรับ remote workers ควรแก้ loneliness เพราะผู้ใช้ขาด social feedback ช่วย challenge assumption นี้ ถามกลับ 2 คำถาม และเสนอ counterargument 3 ข้อ
+I think remote workers need a wellness product for loneliness because they lack social feedback. Challenge this assumption, ask 2 clarifying questions, and give 3 counterarguments.
 ```
 
 Pitch line:
@@ -40,3 +47,14 @@ Pitch line:
 ```text
 Use AI without losing your mind.
 ```
+
+## Scoring
+
+```text
+turn_debt =
+  (100 - prompt_effort) * 0.40
++ bloom_debt * 0.35
++ (100 - engagement) * 0.25
+```
+
+High score means AI is replacing more cognition. Low score means AI is amplifying the user's own thinking.

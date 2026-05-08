@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f7f8f3">
+    <title>Cognitive Debt Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/web.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand-lockup">
+          <div class="brand-mark" aria-hidden="true"><span></span><span></span></div>
+          <div>
+            <p class="eyebrow">Post-AGI cognitive wellness</p>
+            <h1>Cognitive Debt Tracker</h1>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <button class="ghost-button" type="button" id="loadBadPrompt">Try high debt</button>
+          <button class="ghost-button" type="button" id="loadGoodPrompt">Try low debt</button>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <section class="chat-surface" aria-label="Prompt lab">
+          <div class="chat-header">
+            <div>
+              <p class="eyebrow">Live prompt lab</p>
+              <h2>Use AI without losing your mind.</h2>
+            </div>
+            <div class="pill-row" aria-label="Product modes">
+              <span>Web demo</span>
+              <span>Extension-ready engine</span>
+            </div>
+          </div>
+
+          <div class="conversation" id="conversation" aria-live="polite">
+            <article class="message system-message">
+              <div class="message-label">Coach</div>
+              <p>Type a prompt as if you were asking ChatGPT or Claude. The tracker will score how much thinking you bring before AI answers.</p>
+            </article>
+          </div>
+
+          <form class="composer" id="promptForm">
+            <label class="sr-only" for="promptInput">Prompt</label>
+            <textarea id="promptInput" rows="5" placeholder="Example: ช่วยคิดไอเดีย startup ให้หน่อย"></textarea>
+            <div class="composer-footer">
+              <p id="composerHint">Low score means AI amplifies your thinking. High score means AI replaces it.</p>
+              <button type="submit">Analyze prompt</button>
+            </div>
+          </form>
+        </section>
+
+        <aside class="insight-rail" aria-label="Cognitive debt insights">
+          <section class="meter-panel">
+            <div class="meter-copy">
+              <p class="eyebrow">Latest turn</p>
+              <h2 id="debtLabel">Ready</h2>
+              <p id="impactText">Send a prompt to generate your first thinking receipt.</p>
+            </div>
+            <div class="debt-ring" id="debtRing" style="--score:0;--ring:#3aa17e">
+              <strong id="debtScore">0</strong>
+              <span>debt</span>
+            </div>
+          </section>
+
+          <section class="metric-strip" aria-label="Score breakdown">
+            <div class="metric-tile"><span>Effort</span><strong id="effortScore">0</strong></div>
+            <div class="metric-tile"><span>Bloom</span><strong id="bloomLevel">-</strong></div>
+            <div class="metric-tile"><span>Session</span><strong id="sessionDebt">0</strong></div>
+          </section>
+
+          <section class="intervention-panel">
+            <div class="section-heading">
+              <p class="eyebrow">Intervention generator</p>
+              <h3>Next better move</h3>
+            </div>
+            <div class="intervention-block">
+              <span>Rewrite</span>
+              <p id="rewriteText">Add your hypothesis, constraints, and ask AI to challenge you before it answers.</p>
+            </div>
+            <div class="intervention-block">
+              <span>Provocations</span>
+              <ul id="provocationList">
+                <li>Which assumption are you about to outsource?</li>
+                <li>What answer do you expect before asking AI?</li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="focus-panel">
+            <div class="section-heading split-heading">
+              <div>
+                <p class="eyebrow">Focus layer V2</p>
+                <h3>Attention signals</h3>
+              </div>
+              <label class="switch">
+                <input type="checkbox" id="focusToggle" checked>
+                <span></span>
+              </label>
+            </div>
+            <div class="focus-grid" id="focusGrid">
+              <div><span>Focus</span><strong id="focusScore">82</strong></div>
+              <div><span>Blinks/min</span><strong id="blinkRate">16</strong></div>
+              <div><span>Gaze on task</span><strong id="gazeRate">76%</strong></div>
+              <div><span>Combined state</span><strong id="combinedState">Ready</strong></div>
+            </div>
+            <p class="privacy-note">Camera layer is designed as opt-in, local-only telemetry. The demo simulates aggregate signals.</p>
+          </section>
+        </aside>
+      </main>
+
+      <section class="dashboard" aria-label="Session dashboard">
+        <div class="section-heading">
+          <p class="eyebrow">Today's cognitive fitness</p>
+          <h2>Debt trend and Bloom mix</h2>
+        </div>
+        <div class="dashboard-grid">
+          <div class="trend-panel">
+            <div class="chart-header"><span>Last 10 turns</span><strong id="turnCount">0 turns</strong></div>
+            <div class="bar-chart" id="trendChart"></div>
+          </div>
+          <div class="bloom-panel">
+            <div class="chart-header"><span>Bloom breakdown</span><strong id="topBloom">No data</strong></div>
+            <div class="bloom-list" id="bloomList"></div>
+          </div>
+          <div class="receipt-panel">
+            <span>Pitch receipt</span>
+            <p id="pitchReceipt">In the post-AGI era, the risk is not that AI thinks. The risk is that humans stop practicing thinking.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script src="src/scoring.js"></script>
+    <script src="src/web.js"></script>
+  </body>
+</html>
