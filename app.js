@@ -105,6 +105,173 @@ const BEHAVIOR_COPY = {
   },
 };
 
+Object.assign(BEHAVIOR_COPY.th, {
+  analyze: "วิเคราะห์",
+  assistantName: "AI วิเคราะห์พฤติกรรม",
+  behaviorSignal: "สัญญาณพฤติกรรม",
+  chatLabel: "ข้อความเช็กอิน",
+  chars: "ตัวอักษร",
+  clear: "ล้าง",
+  disclaimer:
+    "เป็นการคัดกรองเชิงพฤติกรรมเท่านั้น ระบบสรุปรูปแบบจากการพิมพ์และประวัติการใช้งาน ไม่ใช่การวินิจฉัยทางการแพทย์",
+  editRatio: "สัดส่วนการแก้ไข",
+  idle: "ว่าง",
+  intro:
+    "พิมพ์อัปเดตสั้น ๆ เกี่ยวกับสิ่งที่กำลังทำ ระบบจะบันทึกช่วงตั้งแต่เริ่มพิมพ์จนถึงกดวิเคราะห์ แล้วสรุปจากเวลา รูปแบบคำ และพฤติกรรมก่อนหน้า",
+  messageLength: "ความยาวข้อความ",
+  placeholder: "ตัวอย่าง: ผมสลับแท็บไปมา แล้วลบประโยคเดิมซ้ำก่อนเขียนจบ",
+  recordingWindow: "ช่วงเวลาที่บันทึก",
+  reviewing: "กำลังประเมิน",
+  signalLabels: { Elevated: "สูงขึ้น", High: "สูง", Low: "ต่ำ", Moderate: "ปานกลาง" },
+  startedAt: "เริ่มพิมพ์",
+  title: "AI วิเคราะห์พฤติกรรม",
+  typing: "กำลังพิมพ์",
+  typingSpeed: "ความเร็วพิมพ์",
+  userName: "คุณ",
+});
+
+const APP_COPY = {
+  en: {
+    action: "Actions",
+    actionWaiting: "Actions: waiting",
+    actionTolerance: "Action tolerance",
+    calibrate: "Calibrate",
+    calibrationHint: "Set the neutral baseline from your current sitting position and gaze.",
+    calibrationNotReady: "Not calibrated yet",
+    cameraEmptyHint: "Processing happens in this browser.",
+    cameraEmptyTitle: "Ready to open camera",
+    currentScore: "Current score",
+    events: "Events",
+    eye: "Eye tracking",
+    eyeWaiting: "Eye: waiting",
+    eyeTolerance: "Eye tolerance",
+    focus: "Focus",
+    focusHintIdle: "Open the camera to start estimating gaze, posture, and actions.",
+    focusLabelIdle: "Not started",
+    liveSignals: "Live signals",
+    mode: "Mode",
+    posture: "Posture",
+    postureTolerance: "Posture tolerance",
+    postureWaiting: "Posture: waiting",
+    presence: "Presence",
+    reset: "Reset",
+    start: "Start",
+    stop: "Stop",
+    export: "Export",
+    noEvents: "No events yet",
+    calibrated: "Calibrated",
+    cameraBlocked: "Camera unavailable",
+    cameraPermissionHint: "The browser needs camera permission on localhost.",
+    modelError: "Models failed to load",
+    modelNotReady: "Models are not ready",
+    modelNetworkHint: "Check your internet connection and refresh the page.",
+    scoreGood: "Focused",
+    scoreGoodHint: "Overall signals look steady.",
+    scoreLow: "Low focus",
+    scoreLowHint: "Gaze, posture, or actions are pulling the score down.",
+    scoreWarn: "Focus drifting",
+    scoreWarnHint: "Some signals are starting to drift.",
+    waiting: "waiting",
+    statusLoading: "Loading models",
+    statusReady: "Ready",
+    statusMeasuring: "Measuring",
+    statusPartial: "Partially ready",
+    trend: "Focus trend",
+  },
+  th: {
+    action: "แอ็กชัน",
+    actionWaiting: "แอ็กชัน: รอข้อมูล",
+    actionTolerance: "ความไวต่อแอ็กชัน",
+    calibrate: "คาลิเบรต",
+    calibrationHint: "ตั้งค่ากึ่งกลางจากท่านั่งและสายตาปัจจุบัน",
+    calibrationNotReady: "ยังไม่ได้คาลิเบรต",
+    cameraEmptyHint: "การประมวลผลเกิดบนเบราว์เซอร์นี้",
+    cameraEmptyTitle: "พร้อมเปิดกล้อง",
+    currentScore: "คะแนนปัจจุบัน",
+    events: "เหตุการณ์",
+    eye: "สายตา",
+    eyeWaiting: "สายตา: รอข้อมูล",
+    eyeTolerance: "ความไวต่อสายตา",
+    focus: "โฟกัส",
+    focusHintIdle: "เปิดกล้องเพื่อเริ่มประเมินสายตา ท่าทาง และแอ็กชัน",
+    focusLabelIdle: "ยังไม่เริ่มวัด",
+    liveSignals: "กล้องและสัญญาณ",
+    mode: "โหมด",
+    posture: "ท่าทาง",
+    postureTolerance: "ความไวต่อท่าทาง",
+    postureWaiting: "ท่าทาง: รอข้อมูล",
+    presence: "การอยู่หน้ากล้อง",
+    reset: "รีเซ็ต",
+    start: "เริ่มวัด",
+    stop: "หยุด",
+    export: "ส่งออก",
+    noEvents: "ยังไม่มีเหตุการณ์",
+    calibrated: "คาลิเบรตแล้ว",
+    cameraBlocked: "เปิดกล้องไม่ได้",
+    cameraPermissionHint: "เบราว์เซอร์ต้องได้รับสิทธิ์ใช้กล้องบน localhost",
+    modelError: "โหลดโมเดลไม่สำเร็จ",
+    modelNotReady: "โมเดลยังไม่พร้อม",
+    modelNetworkHint: "ตรวจการเชื่อมต่ออินเทอร์เน็ตแล้วรีเฟรชหน้า",
+    scoreGood: "โฟกัสดี",
+    scoreGoodHint: "สัญญาณโดยรวมค่อนข้างนิ่ง",
+    scoreLow: "โฟกัสต่ำ",
+    scoreLowHint: "สายตา ท่าทาง หรือแอ็กชันกำลังรบกวนคะแนน",
+    scoreWarn: "โฟกัสแกว่ง",
+    scoreWarnHint: "มีบางสัญญาณที่เริ่มหลุด",
+    waiting: "รอข้อมูล",
+    statusLoading: "กำลังโหลดโมเดล",
+    statusReady: "พร้อมใช้งาน",
+    statusMeasuring: "กำลังวัด",
+    statusPartial: "พร้อมใช้งานบางส่วน",
+    trend: "แนวโน้มโฟกัส",
+  },
+};
+
+const SIGNAL_COPY = {
+  en: {
+    calibratedEvent: "Baseline reset",
+    eyesClosed: "Eyes closed",
+    eyesClosedEvent: "Eyes closed unusually long",
+    fidget: "Frequent hand movement",
+    fidgetLabel: "Moving often",
+    handFace: "Hand near face",
+    handOptional: "Partial hand tracking",
+    lookingAtScreen: "Looking at screen",
+    lookingAway: "Looking away",
+    lookAwayEvent: "Gaze away from screen",
+    lowFocusEvent: "Low focus score",
+    noFace: "No face detected",
+    postureBad: "Leaning/slouching too much",
+    postureGood: "Posture steady",
+    posturePartial: "Body not clearly visible",
+    postureEvent: "Posture drifting",
+    recovered: "Focus recovered",
+    still: "Still",
+    waiting: "waiting",
+  },
+  th: {
+    calibratedEvent: "ตั้งค่ากึ่งกลางใหม่",
+    eyesClosed: "หลับตา",
+    eyesClosedEvent: "หลับตานานผิดปกติ",
+    fidget: "มือเคลื่อนไหวบ่อย",
+    fidgetLabel: "เคลื่อนไหวบ่อย",
+    handFace: "มือใกล้ใบหน้า",
+    handOptional: "วัดมือบางส่วน",
+    lookingAtScreen: "มองจออยู่",
+    lookingAway: "มองออกนอกจอ",
+    lookAwayEvent: "สายตาออกนอกจอ",
+    lowFocusEvent: "คะแนนโฟกัสต่ำ",
+    noFace: "ไม่พบใบหน้า",
+    postureBad: "เอน/ก้มมากไป",
+    postureGood: "ท่าทางนิ่ง",
+    posturePartial: "เห็นลำตัวไม่ชัด",
+    postureEvent: "ท่าทางเริ่มเสีย",
+    recovered: "กลับมาโฟกัส",
+    still: "นิ่ง",
+    waiting: "รอข้อมูล",
+  },
+};
+
 const $ = (selector) => document.querySelector(selector);
 
 const els = {
@@ -244,6 +411,19 @@ function behaviorCopy() {
   return BEHAVIOR_COPY[state?.behaviorLanguage || DEFAULT_BEHAVIOR_LANG];
 }
 
+function appCopy() {
+  return APP_COPY[state?.behaviorLanguage || DEFAULT_BEHAVIOR_LANG];
+}
+
+function signalCopy() {
+  return SIGNAL_COPY[state?.behaviorLanguage || DEFAULT_BEHAVIOR_LANG];
+}
+
+function setNodeText(selector, text) {
+  const node = document.querySelector(selector);
+  if (node) node.textContent = text;
+}
+
 function clamp(value, min = 0, max = 100) {
   return Math.min(max, Math.max(min, value));
 }
@@ -281,6 +461,13 @@ function setStatus(text, tone = "loading") {
   els.modelStatus.classList.toggle("ready", tone === "ready");
   els.modelStatus.classList.toggle("error", tone === "error");
   els.modelStatus.lastChild.textContent = ` ${text}`;
+}
+
+function refreshModelStatusText() {
+  const copy = appCopy();
+  if (state.active) setStatus(copy.statusMeasuring, "ready");
+  else if (!state.models) setStatus(copy.statusLoading, "loading");
+  else setStatus(state.handOptional ? copy.statusPartial : copy.statusReady, "ready");
 }
 
 function formatClock(milliseconds) {
@@ -751,11 +938,29 @@ function addEvent(event) {
   const elapsed = state.sessionStart ? timestamp - state.sessionStart : 0;
   state.events.unshift({
     elapsed: formatClock(elapsed),
+    id: event.id,
     severity: event.severity,
-    title: event.title,
+    title: localizedEventTitle(event),
   });
   state.events = state.events.slice(0, 32);
   renderEvents();
+}
+
+function localizedEventTitle(event) {
+  const copy = signalCopy();
+  const titles = {
+    calibrated: copy.calibratedEvent,
+    "eyes-closed": copy.eyesClosedEvent,
+    fidget: copy.fidget,
+    "hand-face": copy.handFace,
+    "look-away": copy.lookAwayEvent,
+    "low-focus": copy.lowFocusEvent,
+    "no-face": copy.noFace,
+    "pose-partial": copy.posturePartial,
+    posture: copy.postureEvent,
+    recovered: copy.recovered,
+  };
+  return titles[event.id] || event.title;
 }
 
 function renderEvents() {
@@ -770,7 +975,7 @@ function renderEvents() {
       (event) => `
         <li class="${event.severity}">
           <div class="event-time">${event.elapsed}</div>
-          <div class="event-title">${event.title}</div>
+          <div class="event-title">${localizedEventTitle(event)}</div>
         </li>
       `,
     )
@@ -1168,14 +1373,86 @@ function translateFlag(flag) {
   return labels[flag] || flag;
 }
 
-function submitBehaviorCheckin() {
+function normalizeLlmSignal(signal, fallback = "Low") {
+  return ["Low", "Moderate", "Elevated", "High"].includes(signal) ? signal : fallback;
+}
+
+function buildLlmAssistantText(analysis, fallbackText) {
+  if (!analysis?.summary) return fallbackText;
+  const confidence = Number.isFinite(Number(analysis.confidence))
+    ? ` Confidence: ${Math.round(Number(analysis.confidence) * 100)}%.`
+    : "";
+  const recommendation = analysis.recommendation ? ` ${analysis.recommendation}` : "";
+  return `${analysis.summary}${confidence}${recommendation}`;
+}
+
+async function requestLlmBehaviorAssessment(text, metrics, heuristicAssessment) {
+  const payload = {
+    camera: {
+      focus: Math.round(state.focus || 0),
+      latest: state.lastMetrics
+        ? {
+            action: Math.round(state.lastMetrics.action.score || 0),
+            eye: Math.round(state.lastMetrics.eye.score || 0),
+            posture: Math.round(state.lastMetrics.posture.score || 0),
+            presence: Math.round(state.lastMetrics.presence.score || 0),
+          }
+        : null,
+      samples: state.stats.samples,
+    },
+    heuristic: {
+      flags: heuristicAssessment.flags,
+      signal: heuristicAssessment.signal,
+      signalScore: heuristicAssessment.signalScore,
+    },
+    language: state.behaviorLanguage,
+    metrics,
+    text,
+  };
+
+  const response = await fetch("/api/behavior-analysis", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  const result = await response.json();
+  if (!response.ok) {
+    throw new Error(result.error || "LLM analysis failed");
+  }
+  return result.analysis;
+}
+
+async function submitBehaviorCheckin() {
   const text = els.chatInput.value.trim();
   if (!text) return;
 
   const analyzedAt = performance.now();
   const analyzedWallAt = Date.now();
   const metrics = buildTypingMetrics(text, analyzedAt, analyzedWallAt);
-  const assessment = assessBehavior(text, metrics);
+  const heuristicAssessment = assessBehavior(text, metrics);
+  let assessment = heuristicAssessment;
+  els.sendChatBtn.disabled = true;
+  setBehaviorStatus("reviewing");
+  try {
+    const llmAnalysis = await requestLlmBehaviorAssessment(text, metrics, heuristicAssessment);
+    const llmSignal = normalizeLlmSignal(llmAnalysis.signal, heuristicAssessment.signal);
+    assessment = {
+      ...heuristicAssessment,
+      assistantText: buildLlmAssistantText(llmAnalysis, heuristicAssessment.assistantText),
+      flags: Array.isArray(llmAnalysis.flags) && llmAnalysis.flags.length ? llmAnalysis.flags : heuristicAssessment.flags,
+      llm: {
+        confidence: Number(llmAnalysis.confidence || 0),
+        recommendation: llmAnalysis.recommendation || "",
+        summary: llmAnalysis.summary || "",
+      },
+      signal: llmSignal,
+      signalScore: { Low: 1, Moderate: 2, Elevated: 3, High: 5 }[llmSignal] || heuristicAssessment.signalScore,
+    };
+  } catch (error) {
+    console.warn("Falling back to local behavior analysis", error);
+  } finally {
+    els.sendChatBtn.disabled = false;
+  }
   const recording = {
     analyzedAt: new Date(analyzedWallAt).toISOString(),
     durationMs: metrics.actualDurationMs,
@@ -1285,6 +1562,335 @@ function setBehaviorStatus(status) {
   els.typingStatus.textContent = labels[status] || status;
 }
 
+function scoreTone(score) {
+  const copy = appCopy();
+  if (score >= 78) return { label: copy.scoreGood, hint: copy.scoreGoodHint, tone: "good" };
+  if (score >= 55) return { label: copy.scoreWarn, hint: copy.scoreWarnHint, tone: "warn" };
+  if (score > 0) return { label: copy.scoreLow, hint: copy.scoreLowHint, tone: "bad" };
+  return { label: copy.focusLabelIdle, hint: copy.focusHintIdle, tone: "idle" };
+}
+
+function analyzeFace(result, now) {
+  const copy = signalCopy();
+  const landmarks = result.faceLandmarks?.[0];
+  if (!landmarks) {
+    const staleMs = state.lastFaceSeen ? now - state.lastFaceSeen : 9999;
+    return {
+      issues: staleMs > 900 ? [{ id: "no-face", severity: "bad", title: copy.noFace }] : [],
+      label: copy.noFace,
+      present: false,
+      raw: {},
+      score: 0,
+      severity: "bad",
+    };
+  }
+
+  state.lastFaceSeen = now;
+  const leftIris = landmarks[473] || pointAverage([landmarks[474], landmarks[475], landmarks[476], landmarks[477]]);
+  const rightIris = landmarks[468] || pointAverage([landmarks[469], landmarks[470], landmarks[471], landmarks[472]]);
+  const leftInner = landmarks[362];
+  const leftOuter = landmarks[263];
+  const rightOuter = landmarks[33];
+  const rightInner = landmarks[133];
+  const leftEyeCenter = midpoint(leftInner, leftOuter);
+  const rightEyeCenter = midpoint(rightInner, rightOuter);
+  const eyeCenter = midpoint(leftEyeCenter, rightEyeCenter);
+  const nose = landmarks[1];
+  const mouth = midpoint(landmarks[61], landmarks[291]);
+  const gazeX = pointAverage([
+    irisRatio(leftIris, leftInner, leftOuter),
+    irisRatio(rightIris, rightOuter, rightInner),
+  ]);
+  const gazeScalar = gazeX?.x ?? 0.5;
+  const headYaw = nose && eyeCenter ? nose.x - eyeCenter.x : 0;
+  const headPitch = nose && eyeCenter && mouth ? (nose.y - eyeCenter.y) / Math.max(distance(eyeCenter, mouth), 0.001) : 0;
+  const gazeDeviation = Math.max(
+    Math.abs(gazeScalar - state.baseline.gazeX),
+    Math.abs(headYaw - state.baseline.headYaw) * 2.1,
+    Math.abs(headPitch - state.baseline.headPitch) * 0.18,
+  );
+  const leftOpen = distance(landmarks[386], landmarks[374]) / Math.max(distance(leftInner, leftOuter), 0.001);
+  const rightOpen = distance(landmarks[159], landmarks[145]) / Math.max(distance(rightOuter, rightInner), 0.001);
+  const eyeOpen = (leftOpen + rightOpen) / 2;
+  const eyesClosed = eyeOpen < 0.16;
+  const lookingAway = gazeDeviation > state.thresholds.gaze;
+  const closedPenalty = eyesClosed ? 24 : 0;
+  const score = clamp(100 - (gazeDeviation / Math.max(state.thresholds.gaze, 0.001)) * 62 - closedPenalty);
+  const issues = [];
+  if (lookingAway) issues.push({ id: "look-away", severity: "warn", title: copy.lookAwayEvent });
+  if (eyesClosed) issues.push({ id: "eyes-closed", severity: "warn", title: copy.eyesClosedEvent });
+  return {
+    issues,
+    label: eyesClosed ? copy.eyesClosed : lookingAway ? copy.lookingAway : copy.lookingAtScreen,
+    present: true,
+    raw: { eyeOpen, gazeX: gazeScalar, headPitch, headYaw },
+    score,
+    severity: lookingAway || eyesClosed ? "warn" : "good",
+  };
+}
+
+function analyzePosture(result, face) {
+  const copy = signalCopy();
+  const pose = result.landmarks?.[0];
+  if (!pose) {
+    return {
+      issues: face.present ? [{ id: "pose-partial", severity: "warn", title: copy.posturePartial }] : [],
+      label: face.present ? copy.posturePartial : copy.waiting,
+      raw: {},
+      score: face.present ? 58 : 0,
+      severity: face.present ? "warn" : "bad",
+    };
+  }
+  const leftShoulder = pose[11];
+  const rightShoulder = pose[12];
+  const leftHip = pose[23];
+  const rightHip = pose[24];
+  const nose = pose[0];
+  const shoulderCenter = midpoint(leftShoulder, rightShoulder);
+  const hipCenter = midpoint(leftHip, rightHip);
+  const shoulderSlope = Math.abs((leftShoulder?.y || 0) - (rightShoulder?.y || 0));
+  const lean = shoulderCenter && hipCenter ? shoulderCenter.x - hipCenter.x : 0;
+  const headOffset = nose && shoulderCenter ? nose.x - shoulderCenter.x : 0;
+  const headDrop = nose && shoulderCenter ? nose.y - shoulderCenter.y : state.baseline.headDrop;
+  const leanDelta = Math.abs(lean - state.baseline.lean);
+  const headDelta = Math.abs(headOffset);
+  const dropDelta = Math.max(0, headDrop - state.baseline.headDrop);
+  const slopeDelta = Math.max(0, shoulderSlope - state.baseline.shoulderSlope);
+  const postureLoad = Math.max(leanDelta * 1.1, headDelta * 0.9, dropDelta * 0.78, slopeDelta * 1.35);
+  const badPosture = postureLoad > state.thresholds.posture;
+  return {
+    issues: badPosture ? [{ id: "posture", severity: "warn", title: copy.postureEvent }] : [],
+    label: badPosture ? copy.postureBad : copy.postureGood,
+    raw: { headDrop, lean, shoulderSlope },
+    score: clamp(100 - (postureLoad / Math.max(state.thresholds.posture, 0.001)) * 70),
+    severity: badPosture ? "warn" : "good",
+  };
+}
+
+function analyzeActions(result, face) {
+  const copy = signalCopy();
+  const hands = result.landmarks || [];
+  const centers = hands.map((hand) => pointAverage(hand)).filter(Boolean);
+  const nearFace = Boolean(
+    face.present &&
+      hands.some((hand) => {
+        const facePoint = getLastFacePoint();
+        return facePoint && hand.some((point) => distance(point, facePoint) < state.thresholds.action);
+      }),
+  );
+  let handMotion = 0;
+  if (centers.length && state.lastHandCenters.length) {
+    const total = centers.reduce((sum, center) => {
+      const nearest = state.lastHandCenters.reduce(
+        (best, previous) => Math.min(best, distance(center, previous)),
+        Number.POSITIVE_INFINITY,
+      );
+      return Number.isFinite(nearest) ? sum + nearest : sum;
+    }, 0);
+    handMotion = total / centers.length;
+  }
+  state.lastHandCenters = centers;
+  const fidget = handMotion > state.thresholds.action / 5 && hands.length > 0;
+  const optionalPenalty = state.handOptional ? 8 : 0;
+  const issues = [];
+  if (nearFace) issues.push({ id: "hand-face", severity: "warn", title: copy.handFace });
+  if (fidget) issues.push({ id: "fidget", severity: "warn", title: copy.fidget });
+  return {
+    issues,
+    label: nearFace ? copy.handFace : fidget ? copy.fidgetLabel : state.handOptional ? copy.handOptional : copy.still,
+    raw: { handMotion },
+    score: clamp(100 - (nearFace ? 38 : 0) - (fidget ? 22 : 0) - optionalPenalty),
+    severity: nearFace || fidget ? "warn" : "good",
+  };
+}
+
+function updateUI(metrics) {
+  const focus = Math.round(metrics.focus || 0);
+  const tone = scoreTone(focus);
+  const copy = appCopy();
+  els.focusScore.textContent = String(focus);
+  els.focusLabel.textContent = tone.label;
+  els.focusHint.textContent = tone.hint;
+  els.scoreRing.style.setProperty("--score", String(focus));
+  updateMetric("eye", metrics.eye.score);
+  updateMetric("posture", metrics.posture.score);
+  updateMetric("action", metrics.action.score);
+  updateMetric("presence", metrics.presence.score);
+  updateBadge(els.gazeBadge, `${copy.eye}: ${metrics.eye.label}`, metrics.eye.severity);
+  updateBadge(els.postureBadge, `${copy.posture}: ${metrics.posture.label}`, metrics.posture.severity);
+  updateBadge(els.actionBadge, `${copy.action}: ${metrics.action.label}`, metrics.action.severity);
+  els.sampleCount.textContent = `${state.stats.samples} samples`;
+}
+
+async function startCamera() {
+  if (!state.models || state.active) return;
+  try {
+    state.stream = await navigator.mediaDevices.getUserMedia({
+      audio: false,
+      video: { facingMode: "user", height: { ideal: 720 }, width: { ideal: 1280 } },
+    });
+    els.video.srcObject = state.stream;
+    await els.video.play();
+    state.active = true;
+    state.sessionStart = state.sessionStart || performance.now();
+    state.lastInferenceAt = 0;
+    els.startBtn.disabled = true;
+    els.stopBtn.disabled = false;
+    els.calibrateBtn.disabled = false;
+    els.cameraPanel.classList.add("camera-on");
+    refreshModelStatusText();
+    requestAnimationFrame(trackFrame);
+  } catch (error) {
+    console.error(error);
+    setStatus(appCopy().cameraBlocked, "error");
+    els.focusLabel.textContent = appCopy().cameraBlocked;
+    els.focusHint.textContent = appCopy().cameraPermissionHint;
+  }
+}
+
+function stopCamera() {
+  state.active = false;
+  if (state.stream) {
+    state.stream.getTracks().forEach((track) => track.stop());
+  }
+  state.stream = null;
+  els.video.srcObject = null;
+  els.startBtn.disabled = !state.models;
+  els.stopBtn.disabled = true;
+  els.calibrateBtn.disabled = true;
+  els.cameraPanel.classList.remove("camera-on");
+  clearOverlay();
+  refreshModelStatusText();
+}
+
+function resetSession() {
+  state.baseline.calibrated = false;
+  state.behavior = freshBehaviorState();
+  state.events = [];
+  state.focus = 0;
+  state.history = [];
+  state.lastEventAt = new Map();
+  state.previousIssues = new Set();
+  state.sessionStart = state.active ? performance.now() : 0;
+  state.stats = freshStats();
+  els.calibrationState.textContent = appCopy().calibrationNotReady;
+  renderEvents();
+  updateUI({
+    action: { label: signalCopy().waiting, score: 0, severity: "good" },
+    eye: { label: signalCopy().waiting, score: 0, severity: "good" },
+    focus: 0,
+    posture: { label: signalCopy().waiting, score: 0, severity: "good" },
+    presence: { score: 0 },
+  });
+  drawTrend();
+  if (els.chatInput) els.chatInput.value = "";
+  renderChatThread();
+  updateBehaviorUI();
+  applyStaticLanguage();
+}
+
+function calibrate() {
+  if (!state.lastMetrics?.raw) return;
+  const raw = state.lastMetrics.raw;
+  state.baseline = {
+    calibrated: true,
+    gazeX: raw.gazeX ?? state.baseline.gazeX,
+    headDrop: raw.headDrop ?? state.baseline.headDrop,
+    headPitch: raw.headPitch ?? state.baseline.headPitch,
+    headYaw: raw.headYaw ?? state.baseline.headYaw,
+    lean: raw.lean ?? state.baseline.lean,
+    shoulderSlope: raw.shoulderSlope ?? state.baseline.shoulderSlope,
+  };
+  els.calibrationState.textContent = appCopy().calibrated;
+  addEvent({ id: "calibrated", severity: "good", title: signalCopy().calibratedEvent });
+}
+
+async function loadModels() {
+  setStatus(appCopy().statusLoading, "loading");
+  try {
+    const tasks = await import(TASKS_BUNDLE);
+    const vision = await tasks.FilesetResolver.forVisionTasks(WASM_ROOT);
+    const faceLandmarker = await createVisionTask(tasks.FaceLandmarker, vision, {
+      baseOptions: { modelAssetPath: MODEL_URLS.face },
+      minFaceDetectionConfidence: 0.55,
+      minFacePresenceConfidence: 0.55,
+      minTrackingConfidence: 0.55,
+      numFaces: 1,
+      outputFaceBlendshapes: true,
+      runningMode: "VIDEO",
+    });
+    const poseLandmarker = await createVisionTask(tasks.PoseLandmarker, vision, {
+      baseOptions: { modelAssetPath: MODEL_URLS.pose },
+      minPoseDetectionConfidence: 0.55,
+      minPosePresenceConfidence: 0.55,
+      minTrackingConfidence: 0.55,
+      numPoses: 1,
+      runningMode: "VIDEO",
+    });
+    const handLandmarker = await createVisionTask(
+      tasks.HandLandmarker,
+      vision,
+      {
+        baseOptions: { modelAssetPath: MODEL_URLS.hand },
+        minHandDetectionConfidence: 0.55,
+        minHandPresenceConfidence: 0.55,
+        minTrackingConfidence: 0.55,
+        numHands: 2,
+        runningMode: "VIDEO",
+      },
+      false,
+    );
+    state.models = { faceLandmarker, handLandmarker, poseLandmarker };
+    state.handOptional = !handLandmarker;
+    refreshModelStatusText();
+    els.startBtn.disabled = false;
+  } catch (error) {
+    console.error(error);
+    setStatus(appCopy().modelError, "error");
+    els.focusLabel.textContent = appCopy().modelNotReady;
+    els.focusHint.textContent = appCopy().modelNetworkHint;
+  }
+}
+
+function applyStaticLanguage() {
+  const copy = appCopy();
+  setNodeText("#startBtn span", copy.start);
+  setNodeText("#stopBtn span", copy.stop);
+  setNodeText("#calibrateBtn span", copy.calibrate);
+  setNodeText("#resetBtn span", copy.reset);
+  setNodeText("#exportBtn span", copy.export);
+  setNodeText(".camera-panel .panel-heading h2", copy.liveSignals);
+  setNodeText(".camera-empty strong", copy.cameraEmptyTitle);
+  setNodeText(".camera-empty span", copy.cameraEmptyHint);
+  setNodeText(".calibration-strip strong", state.baseline.calibrated ? els.calibrationState.textContent : copy.calibrationNotReady);
+  setNodeText(".calibration-strip span", copy.calibrationHint);
+  setNodeText(".trend-panel .mini-heading span", copy.trend);
+  setNodeText(".score-ring small", copy.focus);
+  setNodeText(".score-copy .eyebrow", copy.currentScore);
+  setNodeText(".metric-card:nth-child(1) .metric-head span", copy.eye);
+  setNodeText(".metric-card:nth-child(2) .metric-head span", copy.posture);
+  setNodeText(".metric-card:nth-child(3) .metric-head span", copy.action);
+  setNodeText(".metric-card:nth-child(4) .metric-head span", copy.presence);
+  setNodeText(".controls-panel .mini-heading span", copy.mode);
+  setNodeText(".range-row:nth-of-type(1) span", copy.eyeTolerance);
+  setNodeText(".range-row:nth-of-type(2) span", copy.postureTolerance);
+  setNodeText(".range-row:nth-of-type(3) span", copy.actionTolerance);
+  setNodeText(".events-panel .mini-heading span", copy.events);
+
+  if (!state.stats.samples) {
+    els.focusLabel.textContent = copy.focusLabelIdle;
+    els.focusHint.textContent = copy.focusHintIdle;
+    updateBadge(els.gazeBadge, copy.eyeWaiting, "good");
+    updateBadge(els.postureBadge, copy.postureWaiting, "good");
+    updateBadge(els.actionBadge, copy.actionWaiting, "good");
+  } else if (state.lastMetrics) {
+    updateUI(state.lastMetrics);
+  }
+  renderEvents();
+  if (!state.events.length) setNodeText(".event-empty", copy.noEvents);
+  refreshModelStatusText();
+}
+
 function applyBehaviorLanguage() {
   const copy = behaviorCopy();
   document.documentElement.lang = state.behaviorLanguage;
@@ -1306,6 +1912,7 @@ function applyBehaviorLanguage() {
   setBehaviorStatus(state.behavior.live.inputStartedAt ? "reviewing" : "idle");
   renderChatThread();
   updateBehaviorUI();
+  applyStaticLanguage();
 }
 
 function setBehaviorLanguage(language) {
